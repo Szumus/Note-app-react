@@ -3,7 +3,7 @@ import AddNote from './AddNote'
 
 function NoteList({notes, handleAddNote , addNote, handleDeleteNote}) {
   return (
-    <div className='grid gap-4 grid-cols-4  '>
+    <div className='grid gap-4 grid-cols-4 flex-wrap  '>
         {notes.map((note) => <Note id={note.id} text={note.text} date={note.date} handleDeleteNote={handleDeleteNote}/>)}
         <AddNote handleAddNote={handleAddNote}/>
     </div>
