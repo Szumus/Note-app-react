@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import './App.css'
 import NoteList from './components/NoteList'
 import {nanoid} from 'nanoid'
+import { useState } from 'react';
 
 function App() {
 
@@ -23,13 +23,30 @@ function App() {
     }
   ]);
 
+  const addNote = (text) => {
+    const date = new Date();
+    const newNote = {
+      id: nanoid(),
+      text: text,
+      date: date.toLocaleDateString()
+    }
+    const newNotes = [...notes, newNote];
+    setNotes(newNotes);
+  }
+
+  const deleteNote =(id) => {
+  const newNotes = notes.filter((note)=> note.id !== id);
+  setNotes(newNotes);
+
+  }
 
   return (
     <div className='max-w-[960px] mx-auto px-4'>
-      <NoteList notes={notes}/>
+      <NoteList notes={notes} handleAddNote={addNote} handleDeleteNote={deleteNote}/>
       
     </div>
   )
 }
 
 export default App
+
